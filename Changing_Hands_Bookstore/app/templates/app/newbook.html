@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} New Books {% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+           <div class="list-group">
+            <a href="{% url 'newbook' %} "class="list-group-item list-group-item-action" aria-current="true">All Books</a>
+            <a href="{% url 'newbookdata' 'Classic' %}" class="list-group-item list-group-item-action ">Classic</a>
+            <a href="{% url 'newbookdata' 'Horror' %}" class="list-group-item list-group-item-action">Horror</a>
+            <a href="{% url 'newbookdata' 'Novel' %}" class="list-group-item list-group-item-action">Novel</a>
+            <a href="{% url 'newbookdata' 'Fiction' %}" class="list-group-item list-group-item-action">Fiction</a>
+            <a href="{% url 'newbookdata' 'Adventure' %}" class="list-group-item list-group-item-action">Adventure</a>
+            <a href="{% url 'newbookdata' 'Educational' %}" class="list-group-item list-group-item-action">Educational</a>
+            <a href="{% url 'newbookdata' 'Kids' %}" class="list-group-item list-group-item-action">Kids</a>
+            <a href="{% url 'newbookdata' 'Mystery' %}" class="list-group-item list-group-item-action">Mystery</a>
+            <a href="{% url 'newbookdata' 'Thriller' %}" class="list-group-item list-group-item-action">Thriller</a>
+            <a href="{% url 'newbookdata' 'Realistic' %}" class="list-group-item list-group-item-action">Realistic</a>
+            <a href="{% url 'newbookdata' 'Sports' %}" class="list-group-item list-group-item-action">Sports</a>
+            <a href="{% url 'newbookdata' 'Inspirational' %}" class="list-group-item list-group-item-action">Inspirational</a>
+            <a href="{% url 'newbookdata' 'below' %}" class="list-group-item list-group-item-action">Below 200</a>
+            <a href="{% url 'newbookdata' 'above' %}" class="list-group-item list-group-item-action">Above 400</a>
+
+
+           </div> 
+        </div>
+        <div class="col-sm-8 offset-sm-1">
+            <div class="row">
+                {% for product in newbooks %}
+                <div class="col-sm-4 text center mb-4">
+                    <a href="{% url 'product-detail' product.id %}" class="btn">
+                        <div class="item">
+                            <img src="{{product.product_image.url}}" alt="" height="300" class="">
+                            <div class="fw-bold">{{product.title}}</div>
+                            <div class="fw-bold">Rs. {{product.discounted_price}}<small class="fw-light text-decoration-line-through"> {{product.selling_price}}</small></div>
+
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
